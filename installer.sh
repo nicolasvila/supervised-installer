@@ -21,6 +21,13 @@ read -p "Press enter to continue"
 #  exit 1
 #fi
 
+if [[ $EUID > 0 ]]; then # we can compare directly with this syntax.
+  echo ""
+  echo "Please run as root/sudo"
+  exit 1
+fi
+
+
 ARCH=$(uname -m)
 DOCKER_BINARY=/usr/bin/docker
 DOCKER_REPO=homeassistant
